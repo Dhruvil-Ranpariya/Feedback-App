@@ -13,7 +13,7 @@ function Navbar() {
   console.log("Thisss is session ",user);
 
   return (
-    // <div className="flex flex-col min-h-screen">
+    // <div className="flex flex-col min-h-screen">---------------------
     <nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white">
       <div className="container pl-6 pr-6 mx-auto flex flex-col md:flex-row justify-between items-center">
         <a href="#" className="text-xl font-bold mb-4 md:mb-0">

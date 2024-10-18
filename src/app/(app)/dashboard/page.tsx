@@ -188,14 +188,15 @@ function Page() {
   
   return (
     
-      <div
-        // className="min-h-screen w-full bg-gray-100 flex flex-col"
-        className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl"
-      >
+    <div
+    className="min-h-screen w-full bg-gray-200 flex flex-col items-center justify-center"
+  >
+    <div className="min-h-screen  my-7 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-[96%]">
+      <div className="flex-grow">
         <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
-
+  
         <div className="mb-4">
-          <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{" "}
+          <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
           <div className="flex items-center">
             <input
               type="text"
@@ -206,7 +207,7 @@ function Page() {
             <Button onClick={copyToClipboard}>Copy</Button>
           </div>
         </div>
-
+  
         <div className="mb-4">
           <Switch
             {...register("acceptMessages")}
@@ -219,7 +220,7 @@ function Page() {
           </span>
         </div>
         <Separator />
-
+  
         <Button
           className="mt-4"
           variant="outline"
@@ -234,17 +235,20 @@ function Page() {
             <RefreshCcw className="h-4 w-4" />
           )}
         </Button>
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+  
+        <div
+          className={`mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 ${
+            message.length > 0 ? "max-h-[calc(100vh-300px)] overflow-y-auto" : ""
+          }`}
+        >
           {message.length > 0 ? (
             message.map((msg) => (
               <MessageCard
                 key={msg.id}
                 message={msg}
-                // onMessageDelete={handleDeleteMessage}
-                //chat gpt sugg
                 onMessageDelete={(messageId: string) =>
                   handleDeleteMessage(messageId)
-                } // Make sure handleDeleteMessage accepts string
+                }
               />
             ))
           ) : (
@@ -252,6 +256,9 @@ function Page() {
           )}
         </div>
       </div>
+    </div>
+  </div>
+  
     
   );
 }
