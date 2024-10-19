@@ -1,66 +1,32 @@
-import {
-    Html,
-    Head,
-    Font,
-    Preview,
-    Heading,
-    Row,
-    Section,
-    Text,
-    Button,
-  } from '@react-email/components';
+// emails/verificationEmail.ts
 
-
+export const generateVerificationEmail = (username: string, otp: string, host: string, protocol: string): string => {
   
-  interface VerificationEmailProps {
-    username: string;
-    otp: string;
-  }
-  
-  export default function VerificationEmail({ username, otp }: VerificationEmailProps) {
-    return (
-      <Html lang="en" dir="ltr">
-        <Head>
-          <title>Verification Code</title>
-          <Font
-            fontFamily="Roboto"
-            fallbackFontFamily="Verdana"
-            webFont={{
-              url: 'https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2',
-              format: 'woff2',
-            }}
-            fontWeight={400}
-            fontStyle="normal"
-          />
-        </Head>
-        <Preview>Here&apos;s your verification code: {otp}</Preview>
-        <Section>
-          <Row>
-            <Heading as="h2">Hello {username},</Heading>
-          </Row>
-          <Row>
-            <Text>
-              Thank you for registering. Please use the following verification
-              code to complete your registration:
-            </Text>
-          </Row>
-          <Row>
-            <Text><b>{otp}</b></Text> 
-          </Row>
-          <Row>
-            <Text>
-              If you did not request this code, please ignore this email.
-            </Text>
-          </Row>
-          <Row>
-            <Button
-              href={`http://localhost:3000/verify/${username}`}
-              style={{ color: '#61dafb' }}
-            >
-              Verify here
-            </Button>
-          </Row>
-        </Section>
-      </Html>
-    );
-  }
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verification Code</title>
+        <style>
+          body { font-family: 'Roboto', Verdana, sans-serif; }
+          .button {
+            background-color: #008000;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+          }
+        </style>
+      </head>
+      <body>
+        <h2>Hello ${username},</h2>
+        <p>Thank you for registering. Please use the following verification code to complete your registration:</p>
+        <p><strong>${otp}</strong></p>
+        <p>If you did not request this code, please ignore this email.</p>
+        <a href="https://truefeedback-ten.vercel.app/verify/${username}" class="button">Verify here</a>
+      </body>
+    </html>
+  `;
+};
