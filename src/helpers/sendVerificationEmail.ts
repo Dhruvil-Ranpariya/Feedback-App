@@ -20,8 +20,8 @@ export async function sendVerificationEmail(
   verifyCode: string
 ): Promise<ApiResponse> {
   try {
-    const host = window.location.host
-    const protocol = window.location.protocol;
+    const host = "https:"
+    const protocol = "truefeedback-ten.vercel.app";
 
     // Generate the email content as an HTML string
     const emailContent = generateVerificationEmail(username, verifyCode,host,protocol);

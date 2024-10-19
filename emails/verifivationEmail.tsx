@@ -25,7 +25,7 @@ export const generateVerificationEmail = (username: string, otp: string, host: s
         <p>Thank you for registering. Please use the following verification code to complete your registration:</p>
         <p><strong>${otp}</strong></p>
         <p>If you did not request this code, please ignore this email.</p>
-        <a href="https://truefeedback-ten.vercel.app/verify/${username}" class="button">Verify here</a>
+        <a href="${protocol}://${host}/verify/${username}" class="button">Verify here</a>
       </body>
     </html>
   `;
